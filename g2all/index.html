@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-<title>ALRYES96 | PS4 GoldHEN Host</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#050914">
+<title>ALRYES96 | PS4 GoldHEN HOST</title>
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="host-page">
 <script>
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
@@ -13,12 +16,12 @@ var fwVersion = isPS4 ? match[1] : "Unknown";
 var fwNum = parseFloat(fwVersion);
 
 function onScriptError() {
-    msgs.innerHTML = "Content not Found! - Clear Browser Data and Re-Install Cache ...";
+    msgs.innerHTML = "تعذّر العثور على أحد الملفات. افحص الكاش وأعد فتح المتصفح.";
 }
 
 if (!isPS4) {
     document.addEventListener("DOMContentLoaded", () => {
-        msgs.innerHTML = "Only for PS4 with Firmware 5.05 and 7.00 to 13.52";
+        msgs.innerHTML = "هذه الصفحة مخصصة لمتصفح PS4 بإصدارات 5.05 و7.00 إلى 13.52";
     });
 } else {
     if (window.applicationCache.status == '0') {
@@ -34,7 +37,7 @@ if (!isPS4) {
             window.location.replace("cacheslopkit.html");
         } else {
             document.addEventListener("DOMContentLoaded", () => {
-                msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
+                msgs.innerHTML = 'إصدار النظام غير مدعوم هنا: <span style="color: #ff7180;">' + fwVersion + '</span>';
             });
         }
     } else {
@@ -93,10 +96,48 @@ if (!isPS4) {
     }
 }
 </script>
-<h1>ALRYES96 | PS4 GoldHEN HOST</h1>
-<hr>
-<br>
-<h1 id=msgs style="font-size: 30px;margin-top: 77px;margin-bottom: 455px;">Loading GoldHEN v2.4b18.12... Please Wait</h1>
-<h1 style="margin-top: 43px;">Special Thanks to:<a href="https://twitter.com/_AlAzif" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@_AlAzif</a>ChendoChap<a href="https://x.com/Kameleonre_" style="color: #f31414;margin-left: 10px;margin-right: 10px;">@Kameleonre_</a>SiSTR0 Abc</h1>
+<header class="site-header">
+  <div class="brand-lockup">
+    <img class="brandmark" src="../logo-alryes96.jpg" alt="شعار مكتب آلريس">
+    <div><p class="brand-title">مكتب آلريس للألعاب والأجهزة الإلكترونية</p><p class="brand-subtitle">ALRYES96 · PS4 HOST PORTAL</p></div>
+  </div>
+  <span class="brand-pill"><i></i> بوابة مسارات PS4</span>
+</header>
+<main class="page-main">
+  <div class="eyebrow"><i></i> PLAYSTATION 4 · FIRMWARE HOST</div>
+  <h1 class="hero-title"><span>ALRYES</span> PS4 HOST</h1>
+  <p class="hero-subtitle">جاري تجهيز الجلبريك تلقائياً لجهازك</p>
+  <section class="host-panel">
+    <div class="panel-head"><strong>حالة الجهاز</strong><span>FIRMWARE CHECK / AUTO START</span></div>
+    <div class="status-card" id="status-card">
+      <div class="status-icon" id="activity-icon"><span class="spin"></span></div>
+      <div><h2 id="msgs">جاري تحميل GoldHEN v2.4b18.12...</h2><p id="status-desc">يجري التحقق من المتصفح وتشغيل المسار المطابق لإصدار النظام.</p></div>
+    </div>
+    <div class="progressbar" aria-hidden="true"><span></span></div>
+    <p class="panel-hint">يرجى الانتظار وعدم إغلاق المتصفح أثناء تنفيذ العملية.</p>
+  </section>
+</main>
+<footer class="site-footer">ALRYES96 · مكتب آلريس للألعاب والأجهزة الإلكترونية<small>مشروع مستقل، مع الحفاظ على نسبة المساهمات الأصلية في ملفات المصدر.</small></footer>
+<script>
+(function(){
+  var msg=document.getElementById('msgs');
+  var card=document.getElementById('status-card');
+  var icon=document.getElementById('activity-icon');
+  var desc=document.getElementById('status-desc');
+  if(!msg||!card||!icon) return;
+  function update(){
+    var t=(msg.textContent||'').toLowerCase();
+    if(/loaded|already loaded|success|تم تحميل|اكتمل/.test(t)){
+      card.classList.remove('is-error');card.classList.add('is-success');
+      icon.innerHTML='✓'; desc.textContent='تم إكمال تحميل GoldHEN. يمكنك الرجوع إلى الشاشة الرئيسية.';
+    }else if(/failed|not found|unsupported|error|غير مدعوم|تعذّر/.test(t)){
+      card.classList.remove('is-success');card.classList.add('is-error');
+      icon.innerHTML='!'; desc.textContent='تعذّر إكمال العملية؛ راجع الرسالة الظاهرة أعلاه.';
+    }
+  }
+  try{new MutationObserver(update).observe(msg,{subtree:true,childList:true,characterData:true});}catch(e){}
+  update();
+})();
+</script>
 </body>
 </html>
