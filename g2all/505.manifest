@@ -1,5 +1,5 @@
-CACHE MANIFEST 
-# ALRYES96 theme v2 - refresh cached UI assets
+﻿CACHE MANIFEST 
+# ALRYES96 contact footer v1 - refresh cached page and icons
 
 CACHE: 
 ../img.jpg
@@ -7,6 +7,9 @@ CACHE:
 ../style.css
 goldhen_2.4b18.13.bin
 index.html
+assets/call.png
+assets/map.png
+assets/whatsapp.png
 505\exploit.js
 
 NETWORK: 
